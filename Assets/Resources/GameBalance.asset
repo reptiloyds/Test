@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbec034696cbeb741846c7475aa07d2d, type: 3}
+  m_Name: GameBalance
+  m_EditorClassIdentifier: 
+  AbilityConfigs:
+  - Type: 1
+    Price: 0
+    ExploredOnStart: 1
+  - Type: 2
+    Price: 5
+    ExploredOnStart: 0
+  - Type: 3
+    Price: 10
+    ExploredOnStart: 0
+  - Type: 4
+    Price: 15
+    ExploredOnStart: 0
+  - Type: 5
+    Price: 20
+    ExploredOnStart: 0
+  - Type: 6
+    Price: 25
+    ExploredOnStart: 0
+  - Type: 7
+    Price: 30
+    ExploredOnStart: 0
+  - Type: 8
+    Price: 35
+    ExploredOnStart: 0
+  - Type: 9
+    Price: 40
+    ExploredOnStart: 0
+  - Type: 10
+    Price: 45
+    ExploredOnStart: 0
+  - Type: 11
+    Price: 50
+    ExploredOnStart: 0
