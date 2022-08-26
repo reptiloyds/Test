@@ -84,12 +84,14 @@ namespace UI
         {
             var searchFrom = new List<BaseSkillUI> { skillUI };
             var currentRoots = new List<BaseSkillUI>();
+            
             do
             {
                 currentRoots.Clear();
                 foreach (var search in searchFrom)
                 {
-                    currentRoots.AddRange(_skillBranches.Where(item => item.Root != exception && item.NextSkills.Contains(search) && item.Root.State == SkillState.Explored)
+                    currentRoots.AddRange(_skillBranches.Where(item => item.Root != exception && item.NextSkills.Contains(search)
+                            && item.Root.State == SkillState.Explored)
                         .Select(item => item.Root)
                         .ToList());
                 }
