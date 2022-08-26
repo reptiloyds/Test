@@ -12,9 +12,9 @@ namespace UI.Base
         }
 
         private WindowState _state;
-
-        protected CloseWindowButton _closeButton;
         private WindowBack _windowBack;
+        protected CloseWindowButton _closeButton;
+        
         public bool IsOpened => _state == WindowState.Opened;
         public bool IsClosed => _state == WindowState.Closed;
 

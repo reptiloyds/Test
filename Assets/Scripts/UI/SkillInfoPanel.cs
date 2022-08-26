@@ -17,25 +17,28 @@ namespace UI
     {
         [SerializeField] private SkillTree _skillTree;
         [SerializeField] private Image _image;
+        [SerializeField] private Image _outlineImage;
         [SerializeField] private TextMeshProUGUI _name;
         [SerializeField] private TextMeshProUGUI _description;
         [SerializeField] private BaseButton _exploreButton;
         [SerializeField] private BaseButton _forgetButton;
 
         private GameSystem _gameSystem;
-        private GameParamFactory _paramFactory;
         private SpriteResources _spriteResources;
+        private GameParamFactory _paramFactory;
+        private GameBalance _gameBalance;
         private ISkillUI _currentSkill;
 
         private bool _canExplore;
         private bool _canForget;
 
         [Inject]
-        private void Construct(GameSystem gameSystem, SpriteResources spriteResources, GameParamFactory paramFactory)
+        private void Construct(GameSystem gameSystem, SpriteResources spriteResources, GameParamFactory paramFactory, GameBalance gameBalance)
         {
             _gameSystem = gameSystem;
             _spriteResources = spriteResources;
             _paramFactory = paramFactory;
+            _gameBalance = gameBalance;
 
             _exploreButton.SetCallback(ExploreSkill);
             _forgetButton.SetCallback(ForgetSkill);
@@ -90,7 +93,8 @@ namespace UI
             _canExplore = _skillTree.CanExploreSelectedSkill();
             _canForget = _skillTree.CanForgetSelectedSkill();
             _exploreButton.SetActive(_canExplore);
-            _forgetButton.SetActive(_canForget); 
+            _forgetButton.SetActive(_canForget);
+            _outlineImage.color = _currentSkill.State == SkillState.Explored ? _gameBalance.ExploredOutlineColor : _gameBalance.UnexploredOutlineColor;
         }
         
         private void RedrawButton()

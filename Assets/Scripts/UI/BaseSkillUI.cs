@@ -1,11 +1,13 @@
 using System;
 using System.Linq;
+using DevelopmentTools;
 using DG.Tweening;
 using Enums;
 using Interfaces;
 using ScriptableObjects;
 using Skills;
 using Systems;
+using TMPro;
 using UI.Base;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +29,7 @@ namespace UI
         [SerializeField] private Image _outlineImage;
         [SerializeField] private SkillType _type;
         [SerializeField] private BaseButton _pickButton;
+        [SerializeField] private TextMeshProUGUI _name;
         
         private GameBalance _gameBalance;
         private SpriteResources _spriteResources;
@@ -37,7 +40,7 @@ namespace UI
         private Sequence _effectSequence;
 
         private const float SELECET_ANIMATION_TIME = 1.2F;
-
+        
         public SkillConfig Config => _config;
         public SkillState State => _state;
         
@@ -62,7 +65,7 @@ namespace UI
             _image.sprite = _spriteResources.GetSprite(_type);
         }
 
-        private void Start()
+        private void Awake()
         {
             if (_config.ExploredOnStart)
             {
@@ -75,6 +78,16 @@ namespace UI
             }
 
             _pickButton.SetCallback(OnSkillClicked);
+
+            if (_gameBalance.ShowSkillName)
+            {
+                _name.text = gameObject.name;
+                _name.Activate();
+            }
+            else
+            {
+                _name.Deactivate();
+            }
         }
 
         private void OnSkillClicked()
@@ -104,6 +117,17 @@ namespace UI
             SetState(SkillState.Unexplored);
             _gameSystem.AddCurrency(GameParamType.SkillPoint, _config.Price);
             _skillSystem.RemoveSkill(_config.Type);
+        }
+
+        public void ShowName()
+        {
+            _name.text = gameObject.name;
+            _name.Activate();
+        }
+
+        public void HideName()
+        {
+            _name.Deactivate();
         }
 
         private void SetState(SkillState state)

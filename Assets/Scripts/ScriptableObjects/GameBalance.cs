@@ -11,6 +11,7 @@ namespace ScriptableObjects
         [Header("Skills Settings")]
         public int StartSkillPoints;
         public int SkillPointsForClick;
+        public bool ShowSkillName;
         public Color UnexploredSkillColor;
         public Color UnexploredOutlineColor;
         public Color ExploredOutlineColor;

@@ -42,6 +42,26 @@ namespace UI
                 }
             }
         }
+
+        [Button]
+        private void ShowSkillNames()
+        {
+            _skills = GetComponentsInChildren<BaseSkillUI>().ToList();
+            foreach (var skill in _skills)
+            {
+                skill.ShowName();
+            }
+        }
+
+        [Button]
+        private void HideSkillNames()
+        {
+            _skills = GetComponentsInChildren<BaseSkillUI>().ToList();
+            foreach (var skill in _skills)
+            {
+                skill.HideName();
+            }
+        }
         
         private void Start()
         {

@@ -70,7 +70,7 @@ namespace Systems
         }
         
 
-        private void CloseAllWindows()
+        public void CloseAllWindows()
         {
             foreach (var window in _all)
             {

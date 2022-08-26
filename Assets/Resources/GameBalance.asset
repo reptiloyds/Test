@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartSkillPoints: 0
   SkillPointsForClick: 1
+  ShowSkillName: 1
   UnexploredSkillColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
   UnexploredOutlineColor: {r: 0.18396229, g: 0.83137256, b: 1, a: 1}
   ExploredOutlineColor: {r: 0.18431371, g: 1, b: 0.49490625, a: 1}
