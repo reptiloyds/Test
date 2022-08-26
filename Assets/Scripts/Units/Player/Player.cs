@@ -1,27 +1,41 @@
-using System;
-using DevelopmentTools;
+using System.Collections.Generic;
+using System.Linq;
 using Enums;
-using Factories;
 using Interfaces;
-using Zenject;
+using Skills;
+using UnityEngine;
 
 namespace Units.Player
 {
-    public sealed class Player : BaseUnit, IGameParamOwner
+    public sealed class Player : BaseUnit, IGameParamOwner, ISkillOwner
     {
-        private GameParamFactory _paramFactory;
+        private readonly List<SkillSandbox> _skills = new List<SkillSandbox>();
 
-        private const float START_SKILLPOINTS = 0; 
-        
-        [Inject]
-        private void Construct(GameParamFactory paramFactory)
+        public void AddSkill(SkillSandbox skillSandbox)
         {
-            _paramFactory = paramFactory;
-            _paramFactory.CreateParam(this, GameParamType.SkillPoint, START_SKILLPOINTS);
+            if(_skills.Contains(skillSandbox)) return;
+            _skills.Add(skillSandbox);
+            Debug.Log($"Add {skillSandbox.Type}");
         }
 
-        private void Start()
+        public void RemoveSkill(SkillType skillType)
         {
+            var skill = _skills.FirstOrDefault(item => item.Type == skillType);
+            if (skill == null) return;
+            _skills.Remove(skill);
+            Debug.Log($"Remove {skillType}");
+        }
+
+        public void UseSkill(SkillType skillType)
+        {
+            var skillCommand = _skills.FirstOrDefault(item => item.Type == skillType);
+            skillCommand?.Execute();
+        }
+
+        public void Cancel(SkillType skillType)
+        {
+            var skillCommand = _skills.FirstOrDefault(item => item.Type == skillType);
+            skillCommand?.Cancel();
         }
     }
 }

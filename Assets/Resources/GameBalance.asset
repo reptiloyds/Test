@@ -12,37 +12,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbec034696cbeb741846c7475aa07d2d, type: 3}
   m_Name: GameBalance
   m_EditorClassIdentifier: 
-  AbilityConfigs:
-  - Type: 1
-    Price: 0
-    ExploredOnStart: 1
-  - Type: 2
-    Price: 5
-    ExploredOnStart: 0
-  - Type: 3
-    Price: 10
-    ExploredOnStart: 0
-  - Type: 4
-    Price: 15
-    ExploredOnStart: 0
-  - Type: 5
-    Price: 20
-    ExploredOnStart: 0
-  - Type: 6
-    Price: 25
-    ExploredOnStart: 0
-  - Type: 7
-    Price: 30
-    ExploredOnStart: 0
-  - Type: 8
-    Price: 35
-    ExploredOnStart: 0
-  - Type: 9
-    Price: 40
-    ExploredOnStart: 0
-  - Type: 10
-    Price: 45
-    ExploredOnStart: 0
-  - Type: 11
-    Price: 50
-    ExploredOnStart: 0
+  StartSkillPoints: 0
+  SkillPointsForClick: 1
+  UnexploredSkillColor: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+  UnexploredOutlineColor: {r: 0.18396229, g: 0.83137256, b: 1, a: 1}
+  ExploredOutlineColor: {r: 0.18431371, g: 1, b: 0.49490625, a: 1}
+  SkillConfigs:
+  - _type: 1
+    _price: 0
+    _exploredOnStart: 1
+    _name: Move
+    _description: It`s Move
+  - _type: 2
+    _price: 1
+    _exploredOnStart: 0
+    _name: Jump
+    _description: It`s Jump
+  - _type: 3
+    _price: 2
+    _exploredOnStart: 0
+    _name: Fly
+    _description: It`s Fly
+  - _type: 4
+    _price: 2
+    _exploredOnStart: 0
+    _name: Invisinle
+    _description: 'It`s Invisinle '
+  - _type: 5
+    _price: 1
+    _exploredOnStart: 0
+    _name: Fireball
+    _description: It`s Fireball
+  - _type: 6
+    _price: 1
+    _exploredOnStart: 0
+    _name: Regeneration
+    _description: It`s Health regeneration
+  - _type: 7
+    _price: 2
+    _exploredOnStart: 0
+    _name: Telekinesis
+    _description: It`s Telekinesis
+  - _type: 8
+    _price: 3
+    _exploredOnStart: 0
+    _name: Teleportation
+    _description: It`s Teleportation
+  - _type: 9
+    _price: 1
+    _exploredOnStart: 0
+    _name: Vampirism
+    _description: It`s Vampirism
+  - _type: 10
+    _price: 2
+    _exploredOnStart: 0
+    _name: Cloning
+    _description: It`s Cloning
+  - _type: 11
+    _price: 1
+    _exploredOnStart: 0
+    _name: Eagle vision
+    _description: It`s Eagle vision

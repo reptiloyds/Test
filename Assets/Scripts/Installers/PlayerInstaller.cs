@@ -1,6 +1,7 @@
 using Units.Player;
 using UnityEngine;
 using Zenject;
+// ReSharper disable InconsistentNaming
 
 namespace Installers
 {
@@ -8,6 +9,7 @@ namespace Installers
    {
       [SerializeField] private Player _player;
       [SerializeField] private Transform _spawnPoint;
+      
       public override void InstallBindings()
       {
          var playerInstance = Container.InstantiatePrefabForComponent<Player>

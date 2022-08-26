@@ -1,18 +1,15 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DevelopmentTools;
 using Enums;
 using Scene;
 using UI;
-using UnityEngine;
-using Zenject;
+using UI.Base;
 
 namespace Systems
 {
-    public class WindowsSystem : ITickable
+    public sealed class WindowsSystem
     {
-        public event Action<BaseWindow> WindowOpenedEvent, WindowClosedEvent;
         private readonly SceneData _sceneData;
 
         private readonly List<BaseWindow> _all = new List<BaseWindow>();
@@ -42,7 +39,7 @@ namespace Systems
             var elements = _sceneData.UI.GetComponentsInChildren<BaseUIElement>(true);
             foreach (var element in elements)
             {
-                element.Init(this);
+                element.Init();
                 _gamePlayElements.Add(element);
             }
         }
@@ -67,25 +64,11 @@ namespace Systems
             if (_openedWindow == null) return null;
             if (_openedWindow.IsOpened) return null;
             
-            _openedWindow.Closed += OnCloseButtonPressed;
             _openedWindow.Open(list);
-            WindowOpenedEvent?.Invoke(_openedWindow);
 
             return _openedWindow;
         }
-
         
-        //TODO: REWRITE
-        private void OnCloseButtonPressed(BaseWindow window)
-        {
-            window.Closed -= OnCloseButtonPressed;
-            // var hud = window as HUD;
-            // if (hud == null)
-            // {
-            //     OpenWindow<HUD>();   
-            // }
-            WindowClosedEvent?.Invoke(window);
-        }
 
         private void CloseAllWindows()
         {
@@ -109,8 +92,6 @@ namespace Systems
             if (window == _openedWindow) _openedWindow = null;
             
             window.Close();
-            
-            WindowClosedEvent?.Invoke(window);
         }
 
         public BaseWindow GetWindow<T>()
@@ -118,12 +99,7 @@ namespace Systems
             return _all.FirstOrDefault(w => w.GetType() == typeof(T));
         }
 
-        public BaseUIElement GetGamePlayElement(BaseUIElementType element)
-        {
-            return _gamePlayElements.Find(e => e.Type == element);
-        }
-
-        public virtual void MoveToOverlay(params BaseUIElementType[] elements)
+        public void MoveToOverlay(params BaseUIElementType[] elements)
         {
             foreach (var element in elements)
             {
@@ -136,7 +112,7 @@ namespace Systems
             }
         }
         
-        public virtual void ReturnFromOverlay(params BaseUIElementType[] elements)
+        public void ReturnFromOverlay(params BaseUIElementType[] elements)
         {
             foreach (var element in elements)
             {
@@ -146,11 +122,6 @@ namespace Systems
                     gamePlayElement.RestorePosition();
                 }
             }
-        } 
-
-        public void Tick()
-        {
-            _openedWindow?.Tick(Time.deltaTime);
         }
     }
 }

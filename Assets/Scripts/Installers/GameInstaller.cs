@@ -3,6 +3,7 @@ using Scene;
 using Systems;
 using UnityEngine;
 using Zenject;
+// ReSharper disable InconsistentNaming
 
 namespace Installers
 {
@@ -11,7 +12,7 @@ namespace Installers
     {
         [SerializeField] private SceneData _sceneData;
 
-        private const int PARAM_CAPACITY = 10;
+        private const int PARAM_POOL_CAPACITY = 10;
         
         public override void InstallBindings()
         {
@@ -24,8 +25,9 @@ namespace Installers
 
         private void BindSystems()
         {
-            Container.BindInterfacesAndSelfTo<InputSystem>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<WindowsSystem>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<GameSystem>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<SkillSystem>().AsSingle().NonLazy();
         }
 
         private void BindFactories()
@@ -35,7 +37,7 @@ namespace Installers
 
         private void BindPools()
         {
-            Container.BindMemoryPool<GameParam, GameParam.Pool>().WithInitialSize(PARAM_CAPACITY);
+            Container.BindMemoryPool<GameParam, GameParam.Pool>().WithInitialSize(PARAM_POOL_CAPACITY);
         }
     }
 }

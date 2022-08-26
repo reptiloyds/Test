@@ -1,12 +1,11 @@
-using System;
-using System.Globalization;
 using Enums;
 using Factories;
 using Systems;
 using TMPro;
-using Units.Player;
+using UI.Base;
 using UnityEngine;
 using Zenject;
+// ReSharper disable InconsistentNaming
 
 namespace UI
 {
@@ -14,24 +13,22 @@ namespace UI
     {
         [SerializeField] private TextMeshProUGUI _skillPointsText;
         [SerializeField] private BaseButton _skillUpgradeButton;
-
-        private Player _player;
+        
         private GameParamFactory _paramFactory;
         private WindowsSystem _windowsSystem;
         private GameParam _skillPointParam;
         
         [Inject]
-        private void Construct(WindowsSystem windowsSystem, GameParamFactory paramFactory, Player player)
+        private void Construct(WindowsSystem windowsSystem, GameParamFactory paramFactory)
         {
             _paramFactory = paramFactory;
-            _player = player;
             _windowsSystem = windowsSystem;
             _skillUpgradeButton.SetCallback(OpenSkillUpgradeWindow);
         }
 
         private void Start()
         {
-            _skillPointParam = _paramFactory.GetParam(_player, GameParamType.SkillPoint);
+            _skillPointParam = _paramFactory.GetParam<GameSystem>(GameParamType.SkillPoint);
             _skillPointParam.UpdatedEvent += RedrawSkillPoint;
 
             RedrawSkillPoint();
@@ -46,7 +43,7 @@ namespace UI
 
         private void RedrawSkillPoint()
         {
-            _skillPointsText.text = _skillPointParam.Value.ToString(CultureInfo.InvariantCulture);
+            _skillPointsText.text = $"{_skillPointParam.Value}<sprite name=SkillPoint>";
         }
 
         private void OnDestroy()

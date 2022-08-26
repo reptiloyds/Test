@@ -1,5 +1,6 @@
 using Cinemachine;
 using UnityEngine;
+// ReSharper disable InconsistentNaming
 
 namespace Systems
 {

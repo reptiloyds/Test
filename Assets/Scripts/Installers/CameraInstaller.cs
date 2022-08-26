@@ -1,6 +1,7 @@
 using Systems;
 using UnityEngine;
 using Zenject;
+// ReSharper disable InconsistentNaming
 
 namespace Installers
 {
